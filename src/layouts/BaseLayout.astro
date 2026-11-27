@@ -1,0 +1,52 @@
+---
+import { site } from '../data/site';
+import '../styles.css';
+const { title = site.name, description = site.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://example.com');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#122b40" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'ProfessionalService', name: site.name,
+      description: site.description, telephone: site.phoneLink, email: site.email,
+      address: { '@type': 'PostalAddress', streetAddress: 'Sabangan', addressLocality: 'San Juan', addressRegion: 'Ilocos Sur', addressCountry: 'PH' }
+    })} />
+  </head>
+  <body>
+    <slot />
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+      const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+      toggle?.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        menu?.classList.toggle('is-open', !expanded);
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        menu.classList.remove('is-open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      }));
+      const year = document.querySelector('[data-year]');
+      if (year) year.textContent = String(new Date().getFullYear());
+      const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+      const cards = document.querySelectorAll<HTMLElement>('[data-category]');
+      filterButtons.forEach((button) => button.addEventListener('click', () => {
+        filterButtons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        cards.forEach((card) => { card.hidden = !(filter === 'All' || card.dataset.category === filter); });
+      }));
+    </script>
+  </body>
+</html>
