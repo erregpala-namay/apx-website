@@ -23,19 +23,19 @@ export const projects = [
   {
     title: 'Modern Elevated Bungalow', category: 'Residential', type: 'Concept feature',
     description: 'A contemporary residential concept focused on comfort and practical everyday living, with two bedrooms, one common CR, and a stylish living area.',
-    image: '/images/house-elevation.svg', imageAlt: 'Original architectural illustration of a modern elevated bungalow concept',
+    image: 'images/house-elevation.svg', imageAlt: 'Original architectural illustration of a modern elevated bungalow concept',
     status: 'Concept presentation'
   },
   {
     title: 'Architectural Planning Study', category: 'Planning', type: 'Portfolio placeholder',
     description: 'A space-planning presentation area reserved for an authorized APX project image and project details.',
-    image: '/images/blueprint.svg', imageAlt: 'Original architectural floor-plan line illustration',
+    image: 'images/blueprint.svg', imageAlt: 'Original architectural floor-plan line illustration',
     status: 'Replace with an APX project'
   },
   {
     title: 'Residential Design Detail', category: 'Residential', type: 'Portfolio placeholder',
     description: 'A presentation area for a completed or approved residential design, with project scope and location added after confirmation.',
-    image: '/images/interior.svg', imageAlt: 'Original minimalist interior architecture illustration',
+    image: 'images/interior.svg', imageAlt: 'Original minimalist interior architecture illustration',
     status: 'Replace with an APX project'
   }
 ];
