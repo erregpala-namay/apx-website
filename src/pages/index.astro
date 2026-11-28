@@ -4,11 +4,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { services, projects, site } from '../data/site';
-const base = apxBaseUrl;
-
-const apxBaseUrl = import.meta.env.BASE_URL.endsWith('/')
+const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+
 
 ---
 <BaseLayout title="APX | Architectural & Engineering Services" description="Architectural and engineering design services in San Juan, Ilocos Sur. Turning visions into reality.">
