@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'; import Header from '../components/Header.astro'; import Footer from '../components/Footer.astro'; import { site } from '../data/site';
-const base = import.meta.env.BASE_URL;
+const base = apxBaseUrl;
+
+const apxBaseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
 ---
 <BaseLayout title="Contact APX | Architectural & Engineering Services"><Header active="Contact" /><main><section class="page-hero"><div class="container"><span class="eyebrow eyebrow-light">CONTACT</span><h1>Your idea starts<br /><em>somewhere.</em></h1><p>Tell APX a little about what you have in mind.</p></div></section><section class="section-pad"><div class="container contact-grid"><div><span class="eyebrow">GET IN TOUCH</span><h2>Let’s talk about<br />your project.</h2><p class="contact-intro">Reach out by phone or email. Share a little about your project, and APX can help you identify a suitable next step.</p><div class="contact-list"><a href={`tel:${site.phoneLink}`}><span>PHONE</span><strong>{site.phone}</strong><i>↗</i></a><a href={`mailto:${site.email}`}><span>EMAIL</span><strong>{site.email}</strong><i>↗</i></a><div><span>LOCATION</span><strong>{site.address}</strong></div></div></div><div class="contact-panel"><span class="eyebrow eyebrow-light">SEND AN INQUIRY</span><h3>What are you planning?</h3><p>Complete the fields below. Your email application will open with your message ready to send.</p><form id="inquiry-form"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required placeholder="Name" /><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" /><label for="project">Tell us about your project</label><textarea id="project" name="project" rows="5" required placeholder="A short description of what you have in mind..."></textarea><button class="button button-light" type="submit">Prepare email <span>↗</span></button><p class="form-note">This form opens your email application; it does not send or store information on this website.</p></form><script>
   const form = document.querySelector<HTMLFormElement>('#inquiry-form');

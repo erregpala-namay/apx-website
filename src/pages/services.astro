@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'; import Header from '../components/Header.astro'; import Footer from '../components/Footer.astro'; import SectionHeading from '../components/SectionHeading.astro'; import { services } from '../data/site';
-const base = import.meta.env.BASE_URL;
+const base = apxBaseUrl;
+
+const apxBaseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
 ---
 <BaseLayout title="Services | APX Architectural & Engineering Services"><Header active="Services" /><main><section class="page-hero"><div class="container"><span class="eyebrow eyebrow-light">OUR SERVICES</span><h1>Ideas, planning<br /><em>and design.</em></h1><p>Explore the areas of design APX can discuss with you.</p></div></section><section class="section-pad"><div class="container"><SectionHeading eyebrow="HOW WE CAN HELP" title="A starting point for your project." text="The service categories below are proposed website content based on the business description. Confirm actual offerings, scope, and professional responsibilities directly with APX." /><div class="all-services">{services.map((service) => <article class="service-row"><span class="service-number">{service.number}</span><span class="service-icon">{service.icon}</span><div><h3>{service.title}</h3><p>{service.description}</p></div><a href={`${base}contact/`} aria-label={`Ask about ${service.title}`}>↗</a></article>)}</div><div class="info-note scope-note"><strong>Service scope and professional practice</strong><p>Specific services, signed/sealed plans, permits, and professional deliverables depend on the project and the appropriately licensed professionals engaged. Confirm these details with APX before making commitments.</p></div></div></section></main><Footer /></BaseLayout>
